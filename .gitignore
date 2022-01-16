@@ -1,32 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 257a91cdc591f72332c0083bbbe9f86442f5ff73
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-<<<<<<< HEAD
-=======
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,react,yarn
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,react,yarn
@@ -202,6 +173,3 @@ sketch
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/node,react,yarn
->>>>>>> 0f0d7157dc8eac3618d975db8a21dab0b5baff8a
-=======
->>>>>>> 257a91cdc591f72332c0083bbbe9f86442f5ff73
