@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import styles from "./search.module.css";
+import SearchIcon from '@mui/icons-material/Search';
 
 const Search = () => {
 	const inputRef = useRef();
@@ -11,7 +12,9 @@ const Search = () => {
 		<>
 			<div className={styles.search}>
 				<form className={styles.search__form} onSubmit={handleSubmit}>
-					<button type="submit">찾기</button>
+					<button type="submit">
+						<SearchIcon/>
+					</button>
 					<input
 						className={styles.input}
 						type="text"
