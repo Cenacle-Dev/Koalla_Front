@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "BMJUA";
-  src: url("./fonts/BMJUA_ttf.ttf");
+  src: url("./assets/fonts/BMJUA_ttf.ttf");
 }
 
 @media (prefers-reduced-motion: no-preference) {
