@@ -1,3 +1,4 @@
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import React from "react";
 import styles from "./navbar.module.css";
 
@@ -10,7 +11,9 @@ const Nav = () => {
 				</div>
 				<ul className={styles.navbar__menu}>
 					<li>
-						<a href="/myPage">마이 페이지</a>
+						<a href="/myPage">
+							<AccountCircleIcon/>
+						</a>
 					</li>
 				</ul>
 			</nav>

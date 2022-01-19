@@ -13,11 +13,12 @@
 
 .navbar__logo {
 	font-size: 24px;
+	font-family: "BMJUA";
 	font-weight: 550;
 	margin-left: 1rem;
 }
 
 .navbar__menu {
-	margin-right: 3em;
+	margin-right: 1em;
 	display: flex;
 }
