@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
 import styles from "./search.module.css";
 
-const Search = () => {
+const Search = ({ searchMeeting }) => {
 	const inputRef = useRef();
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(inputRef.current.value);
+		const title = inputRef.current.value.trim();
+		searchMeeting(title);
 	};
 	return (
 		<>
