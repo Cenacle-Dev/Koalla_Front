@@ -1,0 +1,24 @@
+@value mainColor from '../../common/colors.css';
+
+.navbar {
+	display: flex;
+	position: fixed;
+	align-items: center;
+	justify-content: space-between;
+	background-color: mainColor;
+	height: 3em;
+	width: 100%;
+	z-index: 1;
+}
+
+.navbar__logo {
+	font-size: 24px;
+	font-family: "BMJUA";
+	font-weight: 550;
+	margin-left: 1rem;
+}
+
+.navbar__menu {
+	margin-right: 1em;
+	display: flex;
+}
