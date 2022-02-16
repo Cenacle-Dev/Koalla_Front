@@ -1,14 +1,12 @@
 import React, { ChangeEvent } from "react";
 
-import { Undefinable } from "../../../common/types";
-
 import styled from "styled-components";
 
 interface InputContainerProps {
   styled: StyledType;
-  readonly target: string;
+  readonly identifier: string;
   readonly placeholder: string;
-  onChangeTarget: (target: Undefinable<EventTarget & HTMLInputElement>) => void;
+  onChange: (target: ChangeEvent<HTMLInputElement>) => void;
 }
 
 type StyledType = {
@@ -34,20 +32,15 @@ const InputField = styled.input`
 /**
  * 공용 입력창 컴포넌트
  */
-const InputContainer: React.FC<InputContainerProps> = ({ styled, target, placeholder, onChangeTarget }) => {
-
-  const handleInput = (event?: ChangeEvent<HTMLInputElement>) => {
-    onChangeTarget(event?.target);
-  }
-  
+const InputContainer: React.FC<InputContainerProps> = ({ styled, identifier, placeholder, onChange }) => {  
   return (
     <Container height={styled.height}>
       <InputField 
         className="inputField"
         type="text"
-        data-key={target} 
+        name={identifier}
         placeholder={placeholder}
-        onChange={handleInput}
+        onChange={onChange}
       />
     </Container>
   );
