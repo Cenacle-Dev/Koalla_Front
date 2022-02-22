@@ -6,5 +6,8 @@
 - [ ] 모임 만들기 페이지 및 기능
 - [ ] 모임 상세 페이지
 
+## Notion
+https://sweltering-poet-11c.notion.site/10525d129976445694b3b88eeeead474
+
 ## 디자인 가이드
 https://www.figma.com/file/NixgsblUQly3xBLEYs9pbz/books?node-id=0%3A1
