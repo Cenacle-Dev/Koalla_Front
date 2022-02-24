@@ -2,20 +2,23 @@ import React, { ChangeEvent } from "react";
 
 import styled from "styled-components";
 
+type InputContainerType = 'default' | 'description';
+
 interface InputContainerProps {
-  styled: StyledType;
+  readonly inputType: InputContainerType;
   readonly identifier: string;
   readonly placeholder: string;
-  onChange: (target: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-type StyledType = {
-  height: string;
-}
-
-const Container = styled.div<StyledType>`
+const Container = styled.div<{ inputType: InputContainerType }>`
   height: ${props => {
-    return props.height;
+    switch (props.inputType) {
+      case 'description':
+        return '6.5rem';
+      default:
+        return '2.5rem';
+    }
   }};
 `
 
@@ -26,15 +29,22 @@ const InputField = styled.input`
   border: 1px solid #dedede;
   border-radius: 6px;
 
+  font-weight: 600;
+  font-size: 15px;
+
   outline-width: 0;
+  
+  ::-webkit-input-placeholder {
+    color: #dedede;
+  }
 `
 
 /**
  * 공용 입력창 컴포넌트
  */
-const InputContainer: React.FC<InputContainerProps> = ({ styled, identifier, placeholder, onChange }) => {  
+const InputContainer: React.FC<InputContainerProps> = ({ inputType, identifier, placeholder, onChange }) => {  
   return (
-    <Container height={styled.height}>
+    <Container inputType={inputType}>
       <InputField 
         className="inputField"
         type="text"
