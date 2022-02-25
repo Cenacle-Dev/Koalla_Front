@@ -1,30 +1,31 @@
-@value mainColor from '../../common/colors.css';
+import styled from "styled-components";
 
-.search {
+const Search = styled.div`
 	width: 400px;
 	height: 100px;
 	margin: auto;
 	padding: 10px;
-}
+`;
 
-.search__form {
+const Form = styled.form`
 	display: flex;
 	position: absolute;
 	top: 100px;
 	align-items: center;
 	border-bottom: 1px solid white;
 	padding: 5px;
-}
+`;
 
-.input {
+const Input = styled.input`
 	width: 340px;
 	height: 30px;
 	border: none;
 	color: white;
 	background-color: mainColor;
 	outline: none;
-}
+	::placeholder {
+		color: white;
+	}
+`;
 
-input::placeholder {
-	color: white;
-}
+export { Search, Form, Input };
