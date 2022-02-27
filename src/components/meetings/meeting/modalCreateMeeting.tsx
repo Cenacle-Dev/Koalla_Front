@@ -12,13 +12,6 @@ import InputContainer from "../../common/InputContainer";
 import SelectButtonContainer from "../../common/selectButtonContainer";
 import { ImageUpload } from "../../common/imageUpload";
 
-export type CreateMeetingInfo = {
-  image?: File;
-  title: string;
-  description: string;
-  location: string;
-  tags: string;
-};
 
 interface CreateMeetingProps {
   didTapCloseButton(event: MouseEvent<HTMLButtonElement>): void;
