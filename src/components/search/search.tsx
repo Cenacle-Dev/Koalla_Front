@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./styles";
+import * as S from "./styles";
 import SearchIcon from "@mui/icons-material/Search";
 
 const Search = ({ searchMeeting }: any) => {
@@ -8,17 +8,14 @@ const Search = ({ searchMeeting }: any) => {
 	};
 	return (
 		<>
-			<styles.Search>
-				<styles.Form onSubmit={handleSubmit}>
+			<S.Search>
+				<S.Form onSubmit={handleSubmit}>
 					<button type="submit">
 						<SearchIcon />
 					</button>
-					<styles.Input
-						type="text"
-						placeholder="찾고 있는 모임을 알려주세요."
-					/>
-				</styles.Form>
-			</styles.Search>
+					<S.Input type="text" placeholder="찾고 있는 모임을 알려주세요." />
+				</S.Form>
+			</S.Search>
 		</>
 	);
 };

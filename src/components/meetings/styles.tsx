@@ -2,10 +2,13 @@ import styled from "styled-components";
 
 const Meetings = styled.ul`
 	display: flex;
-	flex-wrap: nowrap;
-	width: 100%;
-	height: 400px;
-	margin: auto;
+	justify-content: center;
+	align-items: center;
+
+	@media (max-width: 480px) {
+		flex-direction: column;
+		justify-content: flex-start;
+	}
 `;
 
 export { Meetings };

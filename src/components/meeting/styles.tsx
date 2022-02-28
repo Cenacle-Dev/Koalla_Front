@@ -1,19 +1,20 @@
 import styled from "styled-components";
 
 const Meeting = styled.li`
-	width: 20vw;
-	border: 1px solid transparent;
+	flex: 0 0 23%;
 	border-radius: 6px;
-	height: 260px;
 	background-color: white;
-	margin: auto;
+
+	@media (max-width: 480px) {
+		flex: 0 0 100%;
+		font-size: 8px;
+	}
 `;
 
 const Img = styled.img`
 	width: 100%;
 	height: 50%;
-	border: 1px solid transparent;
-	border-radius: 6px;
+	border-radius: 6px 6px 0 0;
 `;
 
 const Description = styled.div`

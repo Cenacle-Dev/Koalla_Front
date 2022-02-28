@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const Search = styled.div`
-	width: 400px;
-	height: 100px;
-	margin: auto;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 160px;
 	padding: 10px;
 `;
 
@@ -21,7 +21,7 @@ const Input = styled.input`
 	height: 30px;
 	border: none;
 	color: white;
-	background-color: mainColor;
+	background-color: transparent;
 	outline: none;
 	::placeholder {
 		color: white;
