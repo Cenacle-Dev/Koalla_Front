@@ -1,20 +1,19 @@
 import React from "react";
-import styles from "./meeting.module.css";
+import * as styles from "./styles";
 
-const Meeting = ({ title, body, tag }) => {
+const Meeting = ({ title, body, tag }: any) => {
 	return (
-		<li className={styles.meeting}>
-			<img
-				className={styles.meeting__img}
+		<styles.Meeting>
+			<styles.Img
 				src="https://media.istockphoto.com/photos/mug-on-plate-filled-with-coffee-surrounded-by-coffee-beans-picture-id157528129?s=612x612"
 				alt=""
 			/>
-			<div className={styles.meeting__description}>
+			<styles.Description>
 				<h3>{title}</h3>
 				<p>{body}</p>
 				<p>#{tag}</p>
-			</div>
-		</li>
+			</styles.Description>
+		</styles.Meeting>
 	);
 };
 

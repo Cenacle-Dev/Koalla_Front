@@ -1,11 +1,11 @@
 import React from "react";
-import Meeting from "./meeting/meeting";
-import styles from "./meetings.module.css";
+import Meeting from "../meeting/meeting";
+import * as styles from "./styles";
 
-const Meetings = ({ data }) => {
+const Meetings = ({ data }: any) => {
 	return (
-		<ul className={styles.meetings}>
-			{data.map((meeting) => (
+		<styles.Meetings>
+			{data.map((meeting: any) => (
 				<Meeting
 					key={meeting.id}
 					title={meeting.title}
@@ -13,7 +13,7 @@ const Meetings = ({ data }) => {
 					tag={meeting.tag}
 				/>
 			))}
-		</ul>
+		</styles.Meetings>
 	);
 };
 
