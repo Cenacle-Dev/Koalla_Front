@@ -7,7 +7,7 @@ import Meetings from "./components/meetings/meetings";
 import { useState } from "react";
 import meetingData from "../src/common/dummy.json"; //"./common/dummy.json";
 import ModalBackgroundContainer from "./components/common/modalBackgroundContainer";
-import ModalCreateMeeting from "./components/meetings/meeting/modalCreateMeeting";
+import ModalCreateMeeting from "./components/meeting/modalCreateMeeting";
 import { CreateMeetingInfo } from "./common/types";
 
 type Topic = {
@@ -19,7 +19,7 @@ type Topic = {
 
 const App: React.FC = () => {
   const [meetings, setMeetings] = useState<Topic[]>(meetingData.topics);
-  const [isModalPresent, setIsModalPresent] = useState<boolean>(false);
+  const [isModalPresent, setIsModalPresent] = useState<boolean>(true);
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
     console.log("close");
