@@ -1,17 +1,13 @@
-import React, {
-  ChangeEvent,
-  MouseEvent,
-  useState
-} from "react";
+import React, { ChangeEvent, MouseEvent, useState } from "react";
 
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
 
-import BaseButton from "../../common/baseButton";
+import { ImageUpload } from "../../common/imageUpload";
 import InputContainer from "../../common/InputContainer";
 import SelectButtonContainer from "../../common/selectButtonContainer";
-import { ImageUpload } from "../../common/imageUpload";
 import SelectOptionContainer from "../../common/selectOptionContainer";
+import BaseButton from "../../common/baseButton";
 
 import { Location, Category, CreateMeetingInfo } from "../../../common/types";
 import { CATEGORY, LOCATION } from "../../../common/constant";
@@ -22,7 +18,7 @@ interface CreateMeetingProps {
 }
 
 const ModalContainer = styled.div`
-  height: 70%;
+  height: 80%;
   width: 25rem;
 
   display: flex;
@@ -65,13 +61,11 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
   didTapCloseButton,
   didTapSubmitButton,
 }) => {
-  const [createMeetingInfo, setCreateMeetingInfo] =
-    useState<CreateMeetingInfo>();
   const [imageFile, setImageFile] = useState<File>();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [tags, setTags] = useState<string>("");
-  const [location, setLocation] = useState<string>("온라인");
+  const [location, setLocation] = useState<Location>("온라인");
   const [category, setCategory] = useState<Category>("");
 
   const imageFileHandler = (file: File) => {
@@ -94,7 +88,6 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
     }
   };
 
-  const selectHandler = (value: string) => {
   const selectOptionsHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -108,8 +101,12 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
       alert("카테고리를 선택 해주세요.");
     }
   };
+
+  const selectButtonHandler = (value: string) => {
     console.log(value);
-    setLocation(value);
+
+    const location: Location = value as Location;
+    setLocation(location);
   };
 
   const submitHandler = (_: React.SyntheticEvent) => {
@@ -117,6 +114,7 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
       alert("모임 이름과 카테고리 선택이 필요합니다.");
       return;
     }
+
     didTapSubmitButton({
       image: imageFile,
       title: title,
@@ -132,26 +130,30 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
       <CloseButton onClick={didTapCloseButton}>
         <CloseIcon />
       </CloseButton>
+
       <ImageContainer>
         <ImageBox>
-          <ImageUpload onSelectedFile={imageFileHandler} />
+          <ImageUpload onChangeFile={imageFileHandler} />
         </ImageBox>
         <ImageDescLabel>
           모임의 대표 이미지를 등록해주세요.(10MB 미만)
         </ImageDescLabel>
       </ImageContainer>
+
       <InputContainer
         inputType="default"
         identifier="title"
         placeholder="모임 이름을 입력해주세요."
         onChange={inputHandler}
       />
+
       <InputContainer
         inputType="description"
         identifier="description"
         placeholder="다른 사람이 모임에 참여할 수 있도록 간단한 설명을 작성 해주세요."
         onChange={inputHandler}
       />
+
       <InputContainer
         inputType="default"
         identifier="tags"
@@ -162,9 +164,11 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
       <SelectButtonContainer
         type={{
           baseButtonTypes: ["selected", "default"],
-          titles: ["온라인", "오프라인"],
+          titles: LOCATION,
         }}
-        onClick={selectHandler}
+        onClick={selectButtonHandler}
+      />
+
       <SelectOptionContainer
         placeholder="카테고리를 선택 해주세요."
         options={CATEGORY}
