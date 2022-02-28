@@ -7,9 +7,8 @@ import Meetings from "./components/meetings/meetings";
 import { useState } from "react";
 import meetingData from "../src/common/dummy.json"; //"./common/dummy.json";
 import ModalBackgroundContainer from "./components/common/modalBackgroundContainer";
-import ModalCreateMeeting, {
-  CreateMeetingInfo,
-} from "./components/meetings/meeting/modalCreateMeeting";
+import ModalCreateMeeting from "./components/meetings/meeting/modalCreateMeeting";
+import { CreateMeetingInfo } from "./common/types";
 
 type Topic = {
   id: number;
