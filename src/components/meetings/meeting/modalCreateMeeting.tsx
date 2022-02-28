@@ -11,7 +11,10 @@ import BaseButton from "../../common/baseButton";
 import InputContainer from "../../common/InputContainer";
 import SelectButtonContainer from "../../common/selectButtonContainer";
 import { ImageUpload } from "../../common/imageUpload";
+import SelectOptionContainer from "../../common/selectOptionContainer";
 
+import { Location, Category, CreateMeetingInfo } from "../../../common/types";
+import { CATEGORY, LOCATION } from "../../../common/constant";
 
 interface CreateMeetingProps {
   didTapCloseButton(event: MouseEvent<HTMLButtonElement>): void;
@@ -69,6 +72,7 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
   const [description, setDescription] = useState<string>("");
   const [tags, setTags] = useState<string>("");
   const [location, setLocation] = useState<string>("온라인");
+  const [category, setCategory] = useState<Category>("");
 
   const imageFileHandler = (file: File) => {
     const imageFile: File = file;
@@ -91,29 +95,36 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
   };
 
   const selectHandler = (value: string) => {
+  const selectOptionsHandler = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    console.log(event.currentTarget.value);
+
+    const category = event.currentTarget.value as Category;
+
+    if (category) {
+      setCategory(category);
+    } else {
+      alert("카테고리를 선택 해주세요.");
+    }
+  };
     console.log(value);
     setLocation(value);
   };
 
-  const submitHandler = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    
-    setCreateMeetingInfo({
+  const submitHandler = (_: React.SyntheticEvent) => {
+    if (!title || !category) {
+      alert("모임 이름과 카테고리 선택이 필요합니다.");
+      return;
+    }
+    didTapSubmitButton({
       image: imageFile,
       title: title,
       description: description,
       tags: tags,
-      location: location
+      location: location,
+      category: category,
     });
-
-    console.log(createMeetingInfo);
-
-    if (createMeetingInfo) {
-      didTapSubmitButton(createMeetingInfo)
-    } else {
-      // @todo title 미 입력시 alert 노출처리 추가.
-    }
-    
   };
 
   return (
@@ -154,6 +165,10 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
           titles: ["온라인", "오프라인"],
         }}
         onClick={selectHandler}
+      <SelectOptionContainer
+        placeholder="카테고리를 선택 해주세요."
+        options={CATEGORY}
+        onChange={selectOptionsHandler}
       />
 
       <BaseButton buttonType="submit" title="등록" onClick={submitHandler} />
