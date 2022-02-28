@@ -53,7 +53,7 @@ const SelectButtonContainer: React.FC<SelectButtonContainerProps> = ({
         title={title}
         onClick={handleClick}
       />
-      {index != buttonTypes.length - 1 && <Spacer />}
+      {index !== buttonTypes.length - 1 && <Spacer />}
     </Fragment>
   ));
 
