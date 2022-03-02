@@ -141,7 +141,6 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
       </ImageContainer>
 
       <InputContainer
-        inputType="default"
         identifier="title"
         placeholder="모임 이름을 입력해주세요."
         onChange={inputHandler}
@@ -155,7 +154,6 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
       />
 
       <InputContainer
-        inputType="default"
         identifier="tags"
         placeholder="#모임과 #연관된 #태그를 #추가"
         onChange={inputHandler}
