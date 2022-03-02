@@ -5,15 +5,16 @@ import styled from "styled-components";
 type InputContainerType = "default" | "description";
 
 interface InputContainerProps {
-  readonly inputType: InputContainerType;
+  readonly inputContainerType?: InputContainerType;
+  readonly inputType?: string;
   readonly identifier: string;
   readonly placeholder: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Container = styled.div<{ inputType: InputContainerType }>`
+const Container = styled.div<{ inputContainerType: InputContainerType }>`
   height: ${(props) => {
-    switch (props.inputType) {
+    switch (props.inputContainerType) {
       case "description":
         return "6.5rem";
       default:
@@ -45,16 +46,17 @@ const InputField = styled.input`
  * 공용 입력창 컴포넌트
  */
 const InputContainer: React.FC<InputContainerProps> = ({
+  inputContainerType,
   inputType,
   identifier,
   placeholder,
   onChange,
 }) => {
   return (
-    <Container inputType={inputType}>
+    <Container inputContainerType={inputContainerType ?? "default"}>
       <InputField
         className="inputField"
-        type="text"
+        type={inputType ?? "text"}
         name={identifier}
         placeholder={placeholder}
         onChange={onChange}
