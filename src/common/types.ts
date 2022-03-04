@@ -3,6 +3,12 @@ import { LOCATION, CATEGORY } from "./constant";
 export type Location = typeof LOCATION[number]
 export type Category = typeof CATEGORY[number]
 
+export type RegisterInfo = {
+  readonly nickname: string;
+  readonly email: string;
+  readonly password: string;
+}
+
 export type LoginInfo = {
   readonly email: string;
   readonly password: string;
