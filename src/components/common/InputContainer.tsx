@@ -1,28 +1,41 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, MouseEvent } from "react";
 
 import styled from "styled-components";
 
-type InputContainerType = "default" | "description";
+type InputContainerType = "default" | "description" | "checkbox";
 
 interface InputContainerProps {
   readonly inputContainerType?: InputContainerType;
   readonly inputType?: string;
   readonly identifier: string;
   readonly placeholder: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClick?: (event: MouseEvent<HTMLInputElement>) => void;
 }
 
-const Container = styled.div<{ inputContainerType: InputContainerType }>`
+const Container = styled.div<{ inputContainerType?: InputContainerType }>`
   height: ${(props) => {
-    switch (props.inputContainerType) {
+    const type = props.inputContainerType ?? "default";
+    switch (type) {
       case "description":
         return "6.5rem";
-      default:
+      case "default":
         return "2.5rem";
+      default:
+        break
+    }
+  }};
+
+  width: ${(props) => {
+    const type = props.inputContainerType ?? "default";
+
+    if (type === "checkbox") {
+      return "1.5rem";
     }
   }};
 
   display: flex;
+  align-items: center;
 `;
 
 const InputField = styled.input`
@@ -51,6 +64,7 @@ const InputContainer: React.FC<InputContainerProps> = ({
   identifier,
   placeholder,
   onChange,
+  onClick
 }) => {
   return (
     <Container inputContainerType={inputContainerType ?? "default"}>
@@ -60,6 +74,7 @@ const InputContainer: React.FC<InputContainerProps> = ({
         name={identifier}
         placeholder={placeholder}
         onChange={onChange}
+        onClick={onClick}
       />
     </Container>
   );
