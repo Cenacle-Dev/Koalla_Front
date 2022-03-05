@@ -2,8 +2,7 @@ import React from "react";
 import * as S from "./styles";
 
 const MeetingDetail = () => {
-  const bookCover =
-    "https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
+  const bookCover = `${process.env.PUBLIC_URL}/images/book1.jpg`;
   const meetingImg =
     "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80";
   const meetingNotes = [
@@ -19,8 +18,12 @@ const MeetingDetail = () => {
     "https://images.unsplash.com/photo-1608099269227-82de5da1e4a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80",
     "https://images.unsplash.com/photo-1531988042231-d39a9cc12a9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   ];
-  const profile =
-    "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80";
+  const member = {
+    profile:
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80",
+  };
+
+  const members = [member, member, member, member, member, member];
 
   return (
     <S.Main>
@@ -46,30 +49,12 @@ const MeetingDetail = () => {
             <S.BookCover src={bookCover} alt="BookCover" />
           </S.Book>
           <S.Members>
-            <S.Member>
-              <S.Profile src={profile} />
-              너무 재미가 있어요
-            </S.Member>
-            <S.Member>
-              <S.Profile src={profile} />
-              너무 재미가 있어요
-            </S.Member>
-            <S.Member>
-              <S.Profile src={profile} />
-              너무 재미가 있어요
-            </S.Member>
-            <S.Member>
-              <S.Profile src={profile} />
-              너무 재미가 있어요
-            </S.Member>
-            <S.Member>
-              <S.Profile src={profile} />
-              너무 재미가 있어요
-            </S.Member>
-            <S.Member>
-              <S.Profile src={profile} />
-              너무 재미가 있어요
-            </S.Member>
+            {members.map((_member, idx) => (
+              <S.Member key={idx}>
+                <S.Profile src={_member.profile} />
+                너무 재미있어요!
+              </S.Member>
+            ))}
           </S.Members>
         </S.CurrentContainer>
       </S.CurrentMeeting>
@@ -77,8 +62,8 @@ const MeetingDetail = () => {
         <S.SubTitle>진행예정도서</S.SubTitle>
         <S.BooksContainer>
           {afterBooks.map((book, idx) => (
-            <S.Book>
-              <S.BookCover key={idx} src={book} alt="bookCover" />
+            <S.Book key={idx}>
+              <S.BookCover src={book} alt="bookCover" />
             </S.Book>
           ))}
         </S.BooksContainer>
@@ -87,9 +72,9 @@ const MeetingDetail = () => {
         <S.SubTitle>모임 노트</S.SubTitle>
         <S.NotesContainer>
           {meetingNotes.map((note, idx) => (
-            <S.Note>
+            <S.Note key={idx}>
               <S.NoteUser>유저 1</S.NoteUser>
-              <S.BookCover key={idx} src={note} alt="bookCover" />
+              <S.BookCover src={note} alt="bookCover" />
             </S.Note>
           ))}
         </S.NotesContainer>
