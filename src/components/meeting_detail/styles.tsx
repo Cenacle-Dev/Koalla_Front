@@ -2,9 +2,18 @@ import styled from "styled-components";
 
 const Main = styled.main`
   background-color: #fdfdfd;
-  width: 1200px;
-  padding: 24px;
   margin: auto;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 700px;
+    padding: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 980px;
+    padding: 24px;
+  }
 `;
 const Figure = styled.figure`
   position: relative;
@@ -22,8 +31,12 @@ const SubTitle = styled.h3``;
 
 const MeetingImg = styled.img`
   width: 100%;
-  height: 400px;
-  border-radius: 6px;
+  max-height: 500px;
+
+  @media (min-width: 768px) {
+    height: 400px;
+    border-radius: 6px;
+  }
 `;
 const NumberOfMembers = styled.div`
   color: white;
@@ -40,13 +53,26 @@ const Intro = styled.div`
   display: flex;
   margin: 20px 0;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
 `;
 const Figcaption = styled.figcaption`
-  flex: 0 0 80%;
+  flex: 0 0 70%;
   text-align: start;
+  font-size: 12px;
+  @media (min-width: 768px) {
+    font-size: 13px;
+  }
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
 `;
 const Buttons = styled.div`
-  flex: 0 0 20%;
+  flex: 0 0 30%;
   display: flex;
   justify-content: flex-end;
   gap: 10px;
@@ -54,13 +80,21 @@ const Buttons = styled.div`
 const Button = styled.button`
   background-color: grey;
   color: white;
-  padding: 8px 12px;
-  font-size: 16px;
   transition: background-color, font-weight, 0.2s;
   border-radius: 6px;
+  font-size: 12px;
+  padding: 4px 6px;
+
   :hover {
     background-color: #5f5f5f;
     font-weight: bold;
+  }
+  @media (min-width: 768px) {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+  @media (min-width: 1024px) {
+    font-size: 16px;
   }
 `;
 const Description = styled.div`
@@ -69,7 +103,7 @@ const Description = styled.div`
   text-align: left;
 `;
 const CurrentMeeting = styled.div`
-  text-align: left;
+  position: relative;
 `;
 const CurrentContainer = styled.div`
   display: flex;
@@ -82,11 +116,15 @@ const Book = styled.div`
   width: 200px;
   height: 240px;
   margin-right: 20px;
+  box-shadow: 5px 5px 10px #6d6d6d45;
+  @media (max-width: 640px) {
+    margin: 0;
+  }
 `;
 const BookCover = styled.img`
   width: 200px;
   height: 240px;
-  border-radius: 6px;
+  border-radius: 1px;
 `;
 const Members = styled.div`
   display: flex;
