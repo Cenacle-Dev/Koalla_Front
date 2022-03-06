@@ -3,7 +3,7 @@ import React, { ChangeEvent, MouseEvent, useState } from "react";
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
 
-import { ImageUpload } from "../common/imageUpload";
+import { ImageUploader } from "../common/ImageUploader";
 import InputContainer from "../common/InputContainer";
 import SelectButtonContainer from "../common/selectButtonContainer";
 import SelectOptionContainer from "../common/selectOptionContainer";
@@ -133,7 +133,7 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
 
       <ImageContainer>
         <ImageBox>
-          <ImageUpload onChangeFile={imageFileHandler} />
+          <ImageUploader onChangeFile={imageFileHandler} />
         </ImageBox>
         <ImageDescLabel>
           모임의 대표 이미지를 등록해주세요.(10MB 미만)
