@@ -3,6 +3,7 @@ import React, { ChangeEvent, MouseEvent, useState } from "react";
 import styled from "styled-components";
 
 import { RegisterInfo } from "../../common/types";
+import ImageUploaderComponent from "../common/ImageUploaderComponent";
 import InputContainer from "../common/InputContainer";
 
 interface RegisterFormContainerProps {
@@ -22,7 +23,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Spacer = styled.div`
+const VerticalSpacer = styled.div`
   flex-basis: 1rem;
 `;
 
@@ -82,11 +83,17 @@ const NotificationLabel = styled.p<{ type?: NotificationType }>`
 const RegisterFormContainer: React.FC<RegisterFormContainerProps> = ({
   onRegister,
 }) => {
+  const [imageFile, setImageFile] = useState<File>();
   const [nickname, setNickname] = useState<string>();
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [confirmPassword, setConfirmPassword] = useState<string>();
   const [checkList, setCheckList] = useState<boolean[]>([false, false]);
+
+  const handleImageFile = (file: File) => {
+    const imageFile: File = file;
+    setImageFile(imageFile);
+  };
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.currentTarget;
@@ -105,6 +112,7 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = ({
         break;
       case "confirmPassword":
         setConfirmPassword(value);
+        break;
       default:
         break;
     }
@@ -131,7 +139,7 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = ({
     const isCheckedAll: boolean =
       checkList.filter((element) => {
         return !element;
-      }).length == 0;
+      }).length === 0;
 
     if (!isCheckedAll) {
       alert("이용약관 및 개인정보처리방침 동의가 필요 합니다.");
@@ -139,6 +147,7 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = ({
     }
 
     const registerInfo: RegisterInfo = {
+      profileImage: imageFile,
       nickname: nickname ?? "",
       email: email ?? "",
       password: password ?? "",
@@ -149,13 +158,15 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = ({
 
   return (
     <Container>
+      <ImageUploaderComponent onChangeFile={handleImageFile} />
+      <VerticalSpacer />
       <NotificationLabel>영문 또는 한글 2자 이상</NotificationLabel>
       <InputContainer
         identifier="nickname"
         placeholder="닉네임을 입력 해주세요."
         onChange={handleInput}
       />
-      <Spacer />
+      <VerticalSpacer />
       <NotificationLabel type="error">
         올바른 이메일 형식이 아닙니다.
       </NotificationLabel>
@@ -164,7 +175,7 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = ({
         placeholder="이메일을 입력 해주세요."
         onChange={handleInput}
       />
-      <Spacer />
+      <VerticalSpacer />
       <NotificationLabel>
         대소문자 및 숫자, 특수문자를 포함하여 8자 이상
       </NotificationLabel>
@@ -174,7 +185,7 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = ({
         placeholder="비밀번호를 입력 해주세요."
         onChange={handleInput}
       />
-      <Spacer />
+      <VerticalSpacer />
       <NotificationLabel type="error">
         동일한 비밀번호를 입력 해주세요.
       </NotificationLabel>
@@ -184,7 +195,7 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = ({
         placeholder="비밀번호를 다시 입력 해주세요."
         onChange={handleInput}
       />
-      <Spacer />
+      <VerticalSpacer />
       <CheckBoxContainer>
         <InputContainer
           inputContainerType="checkbox"
@@ -205,7 +216,7 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = ({
         />
         <DescriptionLabel>개인정보처리방침에 동의 합니다.</DescriptionLabel>
       </CheckBoxContainer>
-      <Spacer />
+      <VerticalSpacer />
       <RegisterButton onClick={handleRegister}>계정 생성 하기</RegisterButton>
     </Container>
   );

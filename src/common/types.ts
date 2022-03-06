@@ -4,6 +4,7 @@ export type Location = typeof LOCATION[number]
 export type Category = typeof CATEGORY[number]
 
 export type RegisterInfo = {
+  readonly profileImage?: File;
   readonly nickname: string;
   readonly email: string;
   readonly password: string;
