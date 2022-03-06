@@ -1,27 +1,41 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, MouseEvent } from "react";
 
 import styled from "styled-components";
 
-type InputContainerType = "default" | "description";
+type InputContainerType = "default" | "description" | "checkbox";
 
 interface InputContainerProps {
-  readonly inputType: InputContainerType;
+  readonly inputContainerType?: InputContainerType;
+  readonly inputType?: string;
   readonly identifier: string;
   readonly placeholder: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClick?: (event: MouseEvent<HTMLInputElement>) => void;
 }
 
-const Container = styled.div<{ inputType: InputContainerType }>`
+const Container = styled.div<{ inputContainerType?: InputContainerType }>`
   height: ${(props) => {
-    switch (props.inputType) {
+    const type = props.inputContainerType ?? "default";
+    switch (type) {
       case "description":
         return "6.5rem";
-      default:
+      case "default":
         return "2.5rem";
+      default:
+        break
+    }
+  }};
+
+  width: ${(props) => {
+    const type = props.inputContainerType ?? "default";
+
+    if (type === "checkbox") {
+      return "1.5rem";
     }
   }};
 
   display: flex;
+  align-items: center;
 `;
 
 const InputField = styled.input`
@@ -45,19 +59,22 @@ const InputField = styled.input`
  * 공용 입력창 컴포넌트
  */
 const InputContainer: React.FC<InputContainerProps> = ({
+  inputContainerType,
   inputType,
   identifier,
   placeholder,
   onChange,
+  onClick
 }) => {
   return (
-    <Container inputType={inputType}>
+    <Container inputContainerType={inputContainerType ?? "default"}>
       <InputField
         className="inputField"
-        type="text"
+        type={inputType ?? "text"}
         name={identifier}
         placeholder={placeholder}
         onChange={onChange}
+        onClick={onClick}
       />
     </Container>
   );
