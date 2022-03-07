@@ -62,9 +62,9 @@ const MeetingDetail = () => {
         <S.SubTitle>진행예정도서</S.SubTitle>
         <S.BooksContainer>
           {afterBooks.map((book, idx) => (
-            <S.Book key={idx}>
+            <S.AfterBook key={idx}>
               <S.BookCover src={book} alt="bookCover" />
-            </S.Book>
+            </S.AfterBook>
           ))}
         </S.BooksContainer>
       </S.AfterBooks>
@@ -74,7 +74,7 @@ const MeetingDetail = () => {
           {meetingNotes.map((note, idx) => (
             <S.Note key={idx}>
               <S.NoteUser>유저 1</S.NoteUser>
-              <S.BookCover src={note} alt="bookCover" />
+              <S.NoteCover src={note} alt="bookCover" />
             </S.Note>
           ))}
         </S.NotesContainer>
