@@ -70,12 +70,12 @@ const Members = styled.ul`
     row-gap: 10px;
     align-self: flex-start;
   }
-  & :nth-child(2n) {
+  /* & :nth-child(2n) {
     justify-content: start;
   }
   & :nth-child(2n + 1) {
     justify-content: end;
-  }
+  } */
 `;
 const Member = styled.li`
   display: flex;
@@ -89,6 +89,13 @@ const Member = styled.li`
     margin-bottom: 6px;
   }
 `;
+const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  align-items: center;
+`;
+
 const Profile = styled.img`
   width: 60px;
   height: 60px;
@@ -98,7 +105,6 @@ const Profile = styled.img`
     height: 40px;
   }
 `;
-
 const Comment = styled.p``;
 
 export {
@@ -111,4 +117,5 @@ export {
   Member,
   Members,
   Profile,
+  UserInfo,
 };

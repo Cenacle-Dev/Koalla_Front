@@ -12,8 +12,7 @@ const Title = styled.h2`
   font-size: 20px;
   color: white;
   position: absolute;
-  left: 10px;
-  top: -10px;
+  left: 20px;
 `;
 
 const SubTitle = styled.h3``;
