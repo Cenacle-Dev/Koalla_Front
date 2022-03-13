@@ -1,10 +1,8 @@
-import React from "react";
-
+import React, { useState } from "react";
 import "./App.css";
 import Nav from "./components/navbar/navbar";
 import Search from "./components/search/search";
 import Meetings from "./components/meetings/meetings";
-import { useState } from "react";
 import meetingData from "../src/common/dummy.json"; //"./common/dummy.json";
 import ModalBackgroundContainer from "./components/common/modalBackgroundContainer";
 import ModalCreateMeeting from "./components/meeting/modalCreateMeeting";
