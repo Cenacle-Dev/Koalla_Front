@@ -1,5 +1,4 @@
-import React from "react";
-import * as S from "./styles";
+import * as S from './styles';
 
 const Meeting = ({ title, body, tag }: any) => {
   return (

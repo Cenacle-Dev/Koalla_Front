@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`모임 카드 테스트 모임 카드 스냅샷 1`] = `
+<div>
+  <li
+    class="sc-bdvvtL ewUwcx"
+  >
+    <img
+      alt=""
+      class="sc-gsDKAQ hjZJNh"
+      src="https://media.istockphoto.com/photos/mug-on-plate-filled-with-coffee-surrounded-by-coffee-beans-picture-id157528129?s=612x612"
+    />
+    <div
+      class="sc-dkPtRN sgIFf"
+    >
+      <h3
+        class="sc-hKwDye gMqeAw"
+      >
+        모임1
+      </h3>
+      <p
+        class="sc-eCImPb glBdsk"
+      >
+        모임 내용입니다.
+      </p>
+      <p
+        class="sc-jRQBWg kgwKyj"
+      >
+        #
+        #태그1
+      </p>
+    </div>
+  </li>
+</div>
+`;
