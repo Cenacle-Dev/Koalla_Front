@@ -29,7 +29,7 @@ const DescriptionContainer = styled.div`
   flex-grow: 1;
 `;
 
-const DescriptionLabel = styled.p`
+const DescriptionLabel = styled.div`
   top: 50%;
   text-align: left;
   color: white;
@@ -63,8 +63,10 @@ const HorizontalSpacer = styled.div`
  * 회원가입 폼 컨테이너 화면.
  */
 const ImageUploaderComponent: React.FC<ImageUploaderComponentProps> = ({
-  onChangeFile
+  onChangeFile,
 }) => {
+  console.log("ImageUploaderComponent 렌더링됨.");
+
   const [imageFile, setImageFile] = useState<File>();
   const [isUpdateImage, setIsUpdateImage] = useState<boolean>(false);
 
@@ -88,10 +90,10 @@ const ImageUploaderComponent: React.FC<ImageUploaderComponentProps> = ({
 
     switch (name) {
       case "update":
-        setIsUpdateImage(true)
+        setIsUpdateImage(true);
         break;
       case "remove":
-        setIsUpdateImage(true)
+        setIsUpdateImage(true);
         break;
       default:
         break;
