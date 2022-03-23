@@ -97,7 +97,6 @@ const UserSettingsContainer: React.FC<UserSettingsContainerProps> = ({
       case "nickname":
         setNickname(value);
         break;
-        break;
       case "password":
         setPassword(value);
         break;
