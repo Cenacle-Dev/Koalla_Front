@@ -1,12 +1,20 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useState, MouseEvent, useRef } from "react";
 
 import styled from "styled-components";
 
-import { ImageUploader } from "./ImageUploader";
+import { Undefinable } from "../../common/types";
+import ImageUploader, { ImageUploaderRef } from "./ImageUploader";
 
 interface ImageUploaderComponentProps {
-  onChangeFile: (file: File) => void;
+  onChangeFile: (file?: File) => void;
 }
+
+interface ImageModifierItem {
+  name: ImageModifierType;
+  title: string;
+}
+
+type ImageModifierType = "update" | "remove"
 
 const Container = styled.div`
   display: flex;
@@ -14,12 +22,11 @@ const Container = styled.div`
 `;
 
 const ImageBox = styled.div`
-  flex-basis: 7rem;
-  height: 6.5rem;
-  border: 1px solid white;
+  flex-basis: 8rem;
+  height: 8rem;
+  border: 1px solid #dedede;
   border-radius: 1rem;
   text-align: center;
-  background-color: white;
 `;
 
 const DescriptionContainer = styled.div`
@@ -32,24 +39,20 @@ const DescriptionContainer = styled.div`
 const DescriptionLabel = styled.p`
   top: 50%;
   text-align: left;
-  color: white;
+  color: black;
+  white-space: pre;
 `;
 
 const ModifierContainer = styled.div`
+  height: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: end;
 `;
 
-const UpdateImageButton = styled.button`
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: underline;
-`;
-
-const RemoveImageButton = styled.button`
-  color: white;
+const ModifierImageButton = styled.button`
+  color: black;
+  display: flex;
   font-size: 1rem;
   font-weight: 600;
   text-decoration: underline;
@@ -65,26 +68,21 @@ const HorizontalSpacer = styled.div`
 const ImageUploaderComponent: React.FC<ImageUploaderComponentProps> = ({
   onChangeFile
 }) => {
-  const [imageFile, setImageFile] = useState<File>();
+  const [imageFile, setImageFile] = useState<Undefinable<File>>();
   const [isUpdateImage, setIsUpdateImage] = useState<boolean>(false);
 
-  const imageFileHandler = (file: File) => {
   const imageModifierItems: ImageModifierItem[] = [
     {name: "update", title: "수정"}, 
     {name: "remove", title: "삭제"}
   ]
   const imageUploaderRef = useRef<ImageUploaderRef>(null);
+
+  const imageFileHandler = (file?: File) => {
     setImageFile(file);
     onChangeFile(file);
   };
 
-  const imageDescription: JSX.Element = (
-    <div>
-      프로필 이미지를 등록해주세요.
-      <br />
-      (10MB 미만)
-    </div>
-  );
+  const imageDescription: String = "프로필 이미지를 등록해주세요.\n(10MB 미만)"
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
 
@@ -106,7 +104,7 @@ const ImageUploaderComponent: React.FC<ImageUploaderComponentProps> = ({
       <ImageBox>
         <ImageUploader
           iconSize="small"
-          iconPosition={{ top: "25%" }}
+          iconPosition={{ top: "30%" }}
           onChangeFile={imageFileHandler}
           ref={imageUploaderRef}
         />
@@ -114,6 +112,21 @@ const ImageUploaderComponent: React.FC<ImageUploaderComponentProps> = ({
       <HorizontalSpacer />
       <DescriptionContainer>
         <DescriptionLabel>{imageDescription}</DescriptionLabel>
+        <ModifierContainer>
+          {
+            imageModifierItems.map((item, index) => {
+              return (
+                <ModifierImageButton 
+                  key={index} 
+                  name={item.name} 
+                  onClick={handleClick}
+                >
+                  {item.title}
+                </ModifierImageButton>
+              )
+            })
+          }
+        </ModifierContainer>
       </DescriptionContainer>
     </Container>
   );
