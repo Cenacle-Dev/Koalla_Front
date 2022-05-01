@@ -9,6 +9,7 @@ import meetingData from "../src/common/dummy.json"; //"./common/dummy.json";
 import ModalBackgroundContainer from "./components/common/modalBackgroundContainer";
 import ModalCreateMeeting from "./components/meeting/modalCreateMeeting";
 import { CreateMeetingInfo } from "./common/types";
+import AddMeeting from "./components/addMeeting/addMeeting";
 
 type Topic = {
   id: number;
@@ -48,6 +49,7 @@ const App: React.FC = () => {
           }
         />
       )}
+      <AddMeeting handleClick={setIsModalPresent} />
     </div>
   );
 };

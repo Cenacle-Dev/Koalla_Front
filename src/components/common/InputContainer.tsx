@@ -9,6 +9,8 @@ interface InputContainerProps {
   readonly inputType?: string;
   readonly identifier: string;
   readonly placeholder: string;
+  readonly maxLength?: number;
+  readonly autocomplete?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onClick?: (event: MouseEvent<HTMLInputElement>) => void;
 }
@@ -22,7 +24,7 @@ const Container = styled.div<{ inputContainerType?: InputContainerType }>`
       case "default":
         return "2.5rem";
       default:
-        break
+        break;
     }
   }};
 
@@ -64,7 +66,9 @@ const InputContainer: React.FC<InputContainerProps> = ({
   identifier,
   placeholder,
   onChange,
-  onClick
+  onClick,
+  maxLength,
+  autocomplete,
 }) => {
   return (
     <Container inputContainerType={inputContainerType ?? "default"}>
@@ -75,6 +79,8 @@ const InputContainer: React.FC<InputContainerProps> = ({
         placeholder={placeholder}
         onChange={onChange}
         onClick={onClick}
+        maxLength={maxLength}
+        autoComplete={autocomplete}
       />
     </Container>
   );

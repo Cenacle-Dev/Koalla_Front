@@ -35,7 +35,7 @@ const DescriptionContainer = styled.div`
   flex-grow: 1;
 `;
 
-const DescriptionLabel = styled.p`
+const DescriptionLabel = styled.div`
   top: 50%;
   text-align: left;
   color: black;
@@ -65,7 +65,7 @@ const HorizontalSpacer = styled.div`
  * 회원가입 폼 컨테이너 화면.
  */
 const ImageUploaderComponent: React.FC<ImageUploaderComponentProps> = ({
-  onChangeFile
+  onChangeFile,
 }) => {
 
   const imageModifierItems: ImageModifierItem[] = [
