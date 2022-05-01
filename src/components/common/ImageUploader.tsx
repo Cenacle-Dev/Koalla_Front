@@ -117,7 +117,7 @@ const ImageUploader = forwardRef<ImageUploaderRef, ImageUploadProps>(
 
       // Unmount 시 revoke 처리.
       return () => URL.revokeObjectURL(objectUrl);
-    }, [selectedImageFile]);
+    }, [isUpdateImage, selectedImageFile]);
 
     useImperativeHandle(ref, () => ({
       // 수정
