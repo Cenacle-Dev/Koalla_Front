@@ -2,7 +2,6 @@ import React, {
   ChangeEvent,
   memo,
   MouseEvent,
-  useCallback,
   useEffect,
   useState,
 } from "react";
@@ -18,7 +17,7 @@ interface RegisterFormContainerProps {
   onRegister: (info: RegisterInfo) => void;
 }
 
-type Status = "none" | "bad" | "good";
+type Status = "none" | "bad" | "good" | null;
 
 // 회원가입 폼 컨테이너 화면.
 
@@ -30,10 +29,11 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = memo(
     const [password, setPassword] = useState<string>();
     const [confirmPassword, setConfirmPassword] = useState<string>();
     const [checkList, setCheckList] = useState<boolean[]>([false, false]);
-    const [nameStatus, setNameStatus] = useState<Status>("good");
-    const [passwordStatus, setPasswordStatus] = useState<Status>("good");
-    const [emailStatus, setEmailStatus] = useState<Status>("good");
-    const [confirmStatus, setConfirmStatus] = useState<Status>("good");
+    const [nameStatus, setNameStatus] = useState<Status>(null);
+    const [passwordStatus, setPasswordStatus] = useState<Status>(null);
+    const [emailStatus, setEmailStatus] = useState<Status>(null);
+    const [confirmStatus, setConfirmStatus] = useState<Status>(null);
+    const [buttonClickable, setButtonClickable] = useState<boolean>(true);
 
     const nicknameForm = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
     const emailForm =
@@ -41,11 +41,16 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = memo(
     const passwordForm =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
 
-    const handleImageFile = (file?: File) => {
+    useEffect(() => {
+      endisableButton();
+    });
+
+    const handleImageFile = (file: File) => {
+      const imageFile: File = file;
       setImageFile(imageFile);
     };
 
-    const handleInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
       const target = event.currentTarget;
       const value = target.value.replace(/\s/gi, "");
 
@@ -69,9 +74,9 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = memo(
         default:
           break;
       }
-    }, []);
+    };
 
-    const checkNickname = useCallback((nickname: string) => {
+    const checkNickname = (nickname: string) => {
       if (!nickname) {
         setNameStatus("none");
       } else if (!nicknameForm.test(nickname)) {
@@ -79,9 +84,9 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = memo(
       } else {
         setNameStatus("good");
       }
-    }, []);
+    };
 
-    const checkEmail = useCallback((email: string) => {
+    const checkEmail = (email: string) => {
       if (!email) {
         setEmailStatus("none");
       } else if (!emailForm.test(email)) {
@@ -89,9 +94,9 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = memo(
       } else {
         setEmailStatus("good");
       }
-    }, []);
+    };
 
-    const checkPassword = useCallback((password: string) => {
+    const checkPassword = (password: string) => {
       if (!password) {
         setPasswordStatus("none");
       } else if (!passwordForm.test(password)) {
@@ -99,58 +104,52 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = memo(
       } else {
         setPasswordStatus("good");
       }
-    }, []);
+    };
 
-    const verifyPassword = useCallback((confirmPassword: string) => {
+    const verifyPassword = (confirmPassword: string) => {
       if (confirmPassword !== password) {
         setConfirmStatus("bad");
       } else {
         setConfirmStatus("good");
       }
-    }, []);
+    };
 
-    const handleCheckBox = useCallback(
-      (event: MouseEvent<HTMLInputElement>) => {
-        const name: string = event.currentTarget.name;
-        const checked: boolean = event.currentTarget.checked;
+    const handleCheckBox = (event: MouseEvent<HTMLInputElement>) => {
+      const name: string = event.currentTarget.name;
+      const checked: boolean = event.currentTarget.checked;
 
-        let _checkList = [...checkList];
-        let index = name === "useCheckbox" ? 0 : 1;
+      let _checkList = [...checkList];
+      let index = name === "useCheckbox" ? 0 : 1;
 
-        let useItem = _checkList[index];
-        useItem = checked;
-        _checkList[index] = useItem;
-        setCheckList(_checkList);
-      },
-      []
-    );
+      let useItem = _checkList[index];
+      useItem = checked;
+      _checkList[index] = useItem;
+      setCheckList(_checkList);
+    };
 
-    const handleRegister = useCallback(
-      (event: MouseEvent<HTMLButtonElement>) => {
-        if (!nickname || !email || !password || !nickname) {
-          // @todo: register button inactive
-        }
+    const endisableButton = () => {
+      if (
+        nameStatus === "good" &&
+        emailStatus === "good" &&
+        passwordStatus === "good" &&
+        confirmStatus === "good" &&
+        checkList.every((e) => e === true)
+      ) {
+        setButtonClickable(false);
+      } else {
+        setButtonClickable(true);
+      }
+    };
 
-        const isCheckedAll: boolean =
-          checkList.filter((element) => {
-            return !element;
-          }).length === 0;
-
-        if (!isCheckedAll) {
-          alert("이용약관 및 개인정보처리방침 동의가 필요 합니다.");
-          return;
-        }
-
-        const registerInfo: RegisterInfo = {
-          profileImage: imageFile,
-          nickname: nickname ?? "",
-          email: email ?? "",
-          password: password ?? "",
-        };
-        onRegister(registerInfo);
-      },
-      []
-    );
+    const handleRegister = (event: MouseEvent<HTMLButtonElement>) => {
+      const registerInfo: RegisterInfo = {
+        profileImage: imageFile,
+        nickname: nickname ?? "",
+        email: email ?? "",
+        password: password ?? "",
+      };
+      onRegister(registerInfo);
+    };
 
     return (
       <Container>
@@ -214,7 +213,9 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = memo(
           />
           <DescriptionLabel>개인정보처리방침에 동의 합니다.</DescriptionLabel>
         </CheckBoxContainer>
-        <RegisterButton onClick={handleRegister}>계정 생성 하기</RegisterButton>
+        <RegisterButton onClick={handleRegister} disabled={buttonClickable}>
+          계정 생성하기
+        </RegisterButton>
       </Container>
     );
   }
@@ -240,9 +241,10 @@ const CheckBoxContainer = styled.div`
 
 const RegisterButton = styled.button`
   color: white;
-
   padding: 0;
-
+  :disabled {
+    pointer-events: none;
+  }
   font-weight: 700;
   font-size: 1rem;
 
@@ -258,29 +260,6 @@ const DescriptionLabel = styled.p`
   font-weight: 600;
   font-size: 0.8rem;
   margin-left: 0.2rem;
-`;
-
-type NotificationType = "default" | "error";
-
-const NotificationLabel = styled.p<{ type?: NotificationType }>`
-  color: ${(props) => {
-    const type: NotificationType = props.type ?? "default";
-
-    switch (type) {
-      case "default":
-        return "white";
-      default:
-        return "#f25555";
-    }
-  }};
-
-  font-weight: 600;
-  font-size: 0.8rem;
-
-  margin: 0;
-
-  display: flex;
-  flex-basis: 1.5rem;
 `;
 
 const Title = styled.p`
