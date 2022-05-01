@@ -1,8 +1,7 @@
-import React, { useState, MouseEvent, useRef } from "react";
+import React, { MouseEvent, useRef } from "react";
 
 import styled from "styled-components";
 
-import { Undefinable } from "../../common/types";
 import ImageUploader, { ImageUploaderRef } from "./ImageUploader";
 
 interface ImageUploaderComponentProps {
@@ -68,8 +67,6 @@ const HorizontalSpacer = styled.div`
 const ImageUploaderComponent: React.FC<ImageUploaderComponentProps> = ({
   onChangeFile
 }) => {
-  const [imageFile, setImageFile] = useState<Undefinable<File>>();
-  const [isUpdateImage, setIsUpdateImage] = useState<boolean>(false);
 
   const imageModifierItems: ImageModifierItem[] = [
     {name: "update", title: "수정"}, 
@@ -78,7 +75,6 @@ const ImageUploaderComponent: React.FC<ImageUploaderComponentProps> = ({
   const imageUploaderRef = useRef<ImageUploaderRef>(null);
 
   const imageFileHandler = (file?: File) => {
-    setImageFile(file);
     onChangeFile(file);
   };
 
