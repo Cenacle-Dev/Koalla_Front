@@ -1,4 +1,11 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  useEffect,
+  forwardRef,
+  useRef,
+  useState,
+  useImperativeHandle,
+} from "react";
 
 import Resizer from "react-image-file-resizer";
 
@@ -27,6 +34,11 @@ export interface ImageUploadProps {
   readonly iconSize?: IconSize;
   readonly iconPosition?: IconPosition;
   onChangeFile: (file: File) => void;
+};
+
+export interface ImageUploaderRef {
+  update(): void;
+  remove(): void;
 }
 
 const ImageInput = styled.input``;
@@ -40,92 +52,120 @@ const Image = styled.img`
 /**
  * 이미지 업로드시 프리뷰 및 파일처리
  */
-export const ImageUploader: React.FC<ImageUploadProps> = ({
-  imageSize,
-  iconSize,
-  iconPosition,
-  onChangeFile,
-}) => {
-  const [selectedImageFile, setSelectedImageFile] = useState<File>();
-  const [previewURL, setPreviewURL] = useState<string>();
-  const inputRef = useRef<HTMLInputElement>(null);
+const ImageUploader = forwardRef<ImageUploaderRef, ImageUploadProps>(
+  ({ imageSize, iconSize, iconPosition, onChangeFile }, ref) => {
 
-  useEffect(() => {
+    // 사진 수정여부.
+    let [isUpdateImage, setIsUpdateImage] = useState<boolean>(false);
 
-    if (!selectedImageFile) {
-      setPreviewURL(undefined);
-      return;
-    }
+    const [selectedImageFile, setSelectedImageFile] = useState<File>();
+    const [previewURL, setPreviewURL] = useState<string>();
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    const objectUrl = URL.createObjectURL(selectedImageFile);
-    setPreviewURL(objectUrl);
-
-    // Unmount 시 revoke 처리.
-    return () => URL.revokeObjectURL(objectUrl);
-  }, [selectedImageFile]);
-
-  const fileChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!event.target.files || event.target.files.length === 0) {
-      setSelectedImageFile(undefined);
-      return;
-    }
-
-    const imageFile: Optional<File> = event.target.files[0];
-
-    if (imageFile) {
-      if (imageSize) {
-        try {
-          Resizer.imageFileResizer(
-            imageFile,
-            imageSize?.maxWidth ?? 0,
-            imageSize?.maxHeight ?? 0,
-            "JPEG",
-            100,
-            0,
-            (url) => {
-              const stringURL = url as string;
-              console.log(stringURL);
-              setPreviewURL(stringURL);
-            }
-          );
-        } catch (error) {
-          console.log(error);
-        }
+    const fileChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (!event.target.files || event.target.files.length === 0) {
+        setSelectedImageFile(undefined);
+        return;
       }
 
-      setSelectedImageFile(imageFile);
-      onChangeFile(imageFile);
-    } else {
-      setSelectedImageFile(undefined);
-    }
-  };
+      const imageFile: Optional<File> = event.target.files[0];
 
-  return (
-    <div>
-      {selectedImageFile === undefined && (
-        <Fragment>
-          <label htmlFor="imageInputId">
-            <AddCircleOutlineIcon
-              style={{
-                cursor: "pointer",
-                marginTop: iconPosition?.top ?? "20%",
-              }}
-              sx={{
-                fontSize: iconSize === "small" ? 50 : 70,
-                color: red[400],
-              }}
+      if (imageFile) {
+        if (imageSize) {
+          try {
+            Resizer.imageFileResizer(
+              imageFile,
+              imageSize?.maxWidth ?? 0,
+              imageSize?.maxHeight ?? 0,
+              "JPEG",
+              100,
+              0,
+              (url) => {
+                const stringURL = url as string;
+                console.log(stringURL);
+                setPreviewURL(stringURL);
+              }
+            );
+          } catch (error) {
+            console.log(error);
+          }
+        }
+
+        setSelectedImageFile(imageFile);
+        onChangeFile(imageFile);
+      } else {
+        setSelectedImageFile(undefined);
+      }
+    };
+
+    useEffect(() => {
+      
+      // 업로드된 이미지가 존재하고 수정버튼 클릭시 처리.
+      if (isUpdateImage) {
+        inputRef.current?.click();
+        setIsUpdateImage(false);
+        return;
+      }
+
+      if (!selectedImageFile) {
+        setPreviewURL(undefined);
+        return;
+      }
+
+      const objectUrl = URL.createObjectURL(selectedImageFile);
+      setPreviewURL(objectUrl);
+
+      // Unmount 시 revoke 처리.
+      return () => URL.revokeObjectURL(objectUrl);
+    }, [selectedImageFile]);
+
+    useImperativeHandle(ref, () => ({
+      // 수정
+      update() {
+        if (selectedImageFile) {
+          setSelectedImageFile(undefined);
+          setPreviewURL(undefined);
+          setIsUpdateImage(true);
+        }
+      },
+      // 삭제
+      remove() {
+        if (selectedImageFile) {
+          setSelectedImageFile(undefined);
+          setPreviewURL(undefined);
+        }
+      },
+    }));
+
+    return (
+      <div>
+        {selectedImageFile === undefined && (
+          <Fragment>
+            <label htmlFor="imageInputId">
+              <AddCircleOutlineIcon
+                style={{
+                  cursor: "pointer",
+                  marginTop: iconPosition?.top ?? "20%",
+                }}
+                sx={{
+                  fontSize: iconSize === "small" ? 50 : 70,
+                  color: red[400],
+                }}
+              />
+            </label>
+            <ImageInput
+              id="imageInputId"
+              type="file"
+              onChange={fileChangeHandler}
+              ref={inputRef}
+              hidden
             />
-          </label>
-          <ImageInput
-            id="imageInputId"
-            type="file"
-            onChange={fileChangeHandler}
-            ref={inputRef}
-            hidden
-          />
-        </Fragment>
-      )}
-      {selectedImageFile && previewURL && <Image src={previewURL} />}
-    </div>
-  );
-};
+          </Fragment>
+        )}
+        {selectedImageFile && previewURL && <Image src={previewURL} />}
+      </div>
+    );
+  }
+);
+
+export default ImageUploader;

@@ -69,6 +69,11 @@ const ImageUploaderComponent: React.FC<ImageUploaderComponentProps> = ({
   const [isUpdateImage, setIsUpdateImage] = useState<boolean>(false);
 
   const imageFileHandler = (file: File) => {
+  const imageModifierItems: ImageModifierItem[] = [
+    {name: "update", title: "수정"}, 
+    {name: "remove", title: "삭제"}
+  ]
+  const imageUploaderRef = useRef<ImageUploaderRef>(null);
     setImageFile(file);
     onChangeFile(file);
   };
@@ -82,16 +87,14 @@ const ImageUploaderComponent: React.FC<ImageUploaderComponentProps> = ({
   );
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    console.log(event.currentTarget.name);
 
     const name = event.currentTarget.name;
-
     switch (name) {
       case "update":
-        setIsUpdateImage(true)
+        imageUploaderRef.current?.update()
         break;
       case "remove":
-        setIsUpdateImage(true)
+        imageUploaderRef.current?.remove()
         break;
       default:
         break;
@@ -105,6 +108,7 @@ const ImageUploaderComponent: React.FC<ImageUploaderComponentProps> = ({
           iconSize="small"
           iconPosition={{ top: "25%" }}
           onChangeFile={imageFileHandler}
+          ref={imageUploaderRef}
         />
       </ImageBox>
       <HorizontalSpacer />
