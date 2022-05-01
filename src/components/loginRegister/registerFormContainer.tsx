@@ -90,9 +90,8 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = ({
   const [confirmPassword, setConfirmPassword] = useState<string>();
   const [checkList, setCheckList] = useState<boolean[]>([false, false]);
 
-  const handleImageFile = (file: File) => {
-    const imageFile: File = file;
-    setImageFile(imageFile);
+  const handleImageFile = (file?: File) => {
+    setImageFile(file);
   };
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {

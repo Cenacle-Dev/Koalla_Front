@@ -83,9 +83,8 @@ const UserSettingsContainer: React.FC<UserSettingsContainerProps> = ({
   const [password, setPassword] = useState<string>();
   const [checkList, setCheckList] = useState<boolean[]>([false, false]);
 
-  const handleImageFile = (file: File) => {
-    const imageFile: File = file;
-    setImageFile(imageFile);
+  const handleImageFile = (file?: File) => {
+    setImageFile(file);
   };
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
