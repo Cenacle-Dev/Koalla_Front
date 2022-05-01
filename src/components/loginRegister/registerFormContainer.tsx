@@ -41,9 +41,8 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = memo(
     const passwordForm =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
 
-    const handleImageFile = (file: File) => {
-      // const imageFile: File = file;
-      // setImageFile(imageFile);
+    const handleImageFile = (file?: File) => {
+      setImageFile(imageFile);
     };
 
     const handleInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
