@@ -45,9 +45,8 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = memo(
       endisableButton();
     });
 
-    const handleImageFile = (file: File) => {
-      const imageFile: File = file;
-      setImageFile(imageFile);
+    const handleImageFile = (file?: File) => {
+      setImageFile(file);
     };
 
     const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
