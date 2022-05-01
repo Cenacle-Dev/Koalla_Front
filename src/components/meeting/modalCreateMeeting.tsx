@@ -3,7 +3,6 @@ import React, { ChangeEvent, MouseEvent, useState } from "react";
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
 
-import { ImageUploader } from "../common/ImageUploader";
 import InputContainer from "../common/InputContainer";
 import SelectButtonContainer from "../common/selectButtonContainer";
 import SelectOptionContainer from "../common/selectOptionContainer";
@@ -11,6 +10,7 @@ import BaseButton from "../common/baseButton";
 
 import { Location, Category, CreateMeetingInfo } from "../../common/types";
 import { CATEGORY, LOCATION } from "../../common/constant";
+import ImageUploaderComponent from "../common/ImageUploaderComponent";
 
 interface CreateMeetingProps {
   didTapCloseButton(event: MouseEvent<HTMLButtonElement>): void;
@@ -41,22 +41,6 @@ const CloseButton = styled.button`
   align-self: flex-end;
 `;
 
-const ImageContainer = styled.div`
-  display: flex;
-`;
-
-const ImageBox = styled.div`
-  flex-basis: 10rem;
-  height: 8rem;
-  border: 1px solid #dedede;
-  border-radius: 1rem;
-  text-align: center;
-`;
-
-const ImageDescLabel = styled.p`
-  top: 50%;
-`;
-
 const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
   didTapCloseButton,
   didTapSubmitButton,
@@ -68,8 +52,8 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
   const [location, setLocation] = useState<Location>("온라인");
   const [category, setCategory] = useState<Category>("");
 
-  const imageFileHandler = (file: File) => {
-    const imageFile: File = file;
+  const imageFileHandler = (file?: File) => {
+    const imageFile = file;
     setImageFile(imageFile);
   };
 
@@ -131,14 +115,7 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
         <CloseIcon />
       </CloseButton>
 
-      <ImageContainer>
-        <ImageBox>
-          <ImageUploader onChangeFile={imageFileHandler} />
-        </ImageBox>
-        <ImageDescLabel>
-          모임의 대표 이미지를 등록해주세요.(10MB 미만)
-        </ImageDescLabel>
-      </ImageContainer>
+      <ImageUploaderComponent onChangeFile={imageFileHandler} />
 
       <InputContainer
         identifier="title"
@@ -150,12 +127,6 @@ const ModalCreateMeeting: React.FC<CreateMeetingProps> = ({
         inputType="description"
         identifier="description"
         placeholder="다른 사람이 모임에 참여할 수 있도록 간단한 설명을 작성 해주세요."
-        onChange={inputHandler}
-      />
-
-      <InputContainer
-        identifier="tags"
-        placeholder="#모임과 #연관된 #태그를 #추가"
         onChange={inputHandler}
       />
 
