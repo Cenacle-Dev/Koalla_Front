@@ -1,9 +1,8 @@
-import React from "react";
+import React, { ReactElement } from 'react';
+import styled from 'styled-components';
 
-import styled from "styled-components";
-
-interface ModalBackgroundProps<Element extends JSX.Element> {
-  component: Element
+interface ModalBackgroundProps {
+  children: ReactElement | null;
 }
 
 const Container = styled.div`
@@ -19,12 +18,8 @@ const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
 `;
 
-const ModalBackgroundContainer: React.FC<ModalBackgroundProps<JSX.Element>> = ({ component }) => {
-  return (
-    <Container>
-      { component }
-    </Container>
-  );
-}
+const ModalBackgroundContainer: React.FC<ModalBackgroundProps> = ({
+  children,
+}) => <Container>{children}</Container>;
 
 export default ModalBackgroundContainer;
