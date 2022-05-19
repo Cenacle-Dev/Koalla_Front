@@ -1,10 +1,7 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent } from "react";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-type StyledType = {
-  height: string;
-};
 interface InputContainerProps {
   styled: StyledType;
   readonly identifier: string;
@@ -12,9 +9,15 @@ interface InputContainerProps {
   onChange: (target: ChangeEvent<HTMLInputElement>) => void;
 }
 
+type StyledType = {
+  height: string;
+}
+
 const Container = styled.div<StyledType>`
-  height: ${(props) => props.height};
-`;
+  height: ${props => {
+    return props.height;
+  }};
+`
 
 const InputField = styled.input`
   height: 100%;
@@ -24,26 +27,23 @@ const InputField = styled.input`
   border-radius: 6px;
 
   outline-width: 0;
-`;
+`
 
 /**
  * 공용 입력창 컴포넌트
  */
-const InputContainer: React.FC<InputContainerProps> = ({
-  styled,
-  identifier,
-  placeholder,
-  onChange,
-}) => (
-  <Container height={styled.height}>
-    <InputField
-      className="inputField"
-      type="text"
-      name={identifier}
-      placeholder={placeholder}
-      onChange={onChange}
-    />
-  </Container>
-);
+const InputContainer: React.FC<InputContainerProps> = ({ styled, identifier, placeholder, onChange }) => {  
+  return (
+    <Container height={styled.height}>
+      <InputField 
+        className="inputField"
+        type="text"
+        name={identifier}
+        placeholder={placeholder}
+        onChange={onChange}
+      />
+    </Container>
+  );
+}
 
 export default InputContainer;
