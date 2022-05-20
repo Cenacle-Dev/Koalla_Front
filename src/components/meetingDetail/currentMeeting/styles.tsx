@@ -70,16 +70,9 @@ const Members = styled.ul`
     row-gap: 10px;
     align-self: flex-start;
   }
-  /* & :nth-child(2n) {
-    justify-content: start;
-  }
-  & :nth-child(2n + 1) {
-    justify-content: end;
-  } */
 `;
 const Member = styled.li`
   display: flex;
-  align-items: center;
   gap: 10px;
   flex: 0 0 40%;
   @media (max-width: 640px) {
@@ -105,7 +98,15 @@ const Profile = styled.img`
     height: 40px;
   }
 `;
-const Comment = styled.p``;
+
+const Nickname = styled.span`
+  width: 60px;
+  overflow: hidden;
+`;
+
+const Comment = styled.p`
+  transform: translateY(3px);
+`;
 
 export {
   Book,
@@ -118,4 +119,5 @@ export {
   Members,
   Profile,
   UserInfo,
+  Nickname,
 };

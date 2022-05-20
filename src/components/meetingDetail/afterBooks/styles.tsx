@@ -33,7 +33,8 @@ const AfterBook = styled.li`
 
 const BooksContainer = styled.ul`
   display: flex;
-  flex-wrap: wrap;
+  gap: 20px;
+  overflow: hidden;
 `;
 
 const SubTitle = styled.h3``;

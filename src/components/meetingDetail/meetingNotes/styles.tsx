@@ -14,7 +14,7 @@ const Main = styled.section`
 `;
 const NotesContainer = styled.ul`
   display: flex;
-  /* gap: 20px; */
+  gap: 20px;
   @media (max-width: 768px) {
     gap: 0;
   }
@@ -29,7 +29,8 @@ const Note = styled.li`
 `;
 
 const NoteCover = styled.img`
-  width: 100%;
+  width: 230px;
+  height: 300px;
 `;
 
 const NoteUser = styled.h3`

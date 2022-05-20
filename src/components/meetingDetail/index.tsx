@@ -4,6 +4,7 @@ import CurrentMeeting from "./currentMeeting/currentMeeting";
 import Introduction from "./introduction/introduction";
 import Map from "./map/map";
 import MeetingNotes from "./meetingNotes/meetingNotes";
+import Schedule from "./schedule/schedule";
 import * as S from "./styles";
 
 const MeetingDetail = () => {
@@ -13,7 +14,7 @@ const MeetingDetail = () => {
       <CurrentMeeting />
       <AfterBooks />
       <MeetingNotes />
-      <Map />
+      <Schedule />
     </S.Main>
   );
 };
