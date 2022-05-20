@@ -21,13 +21,11 @@ const Main = styled.section`
 `;
 const AfterBook = styled.li`
   ${Frame};
+  position: relative;
+  display: flex;
+  justify-content: center;
   @media (max-width: 768px) {
-    & img {
-      flex: 0 0 33.3%;
-      margin: 0;
-      height: 100%;
-      width: 100%;
-    }
+    flex: 1 1 33.3%;
   }
 `;
 
@@ -35,6 +33,9 @@ const BooksContainer = styled.ul`
   display: flex;
   gap: 20px;
   overflow: hidden;
+  @media (max-width: 768px) {
+    gap: 0;
+  }
 `;
 
 const SubTitle = styled.h3``;

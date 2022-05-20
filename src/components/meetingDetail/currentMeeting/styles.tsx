@@ -18,7 +18,7 @@ const Main = styled.section`
     "book member";
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 50px 300px 180px;
+    grid-template-rows: 50px 300px 260px;
     grid-template-areas:
       "header"
       "book"
@@ -101,6 +101,9 @@ const Profile = styled.img`
 
 const Nickname = styled.span`
   width: 60px;
+  @media (max-width: 640px) {
+    width: 40px;
+  }
   overflow: hidden;
 `;
 

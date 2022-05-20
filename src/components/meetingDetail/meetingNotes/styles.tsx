@@ -15,6 +15,7 @@ const Main = styled.section`
 const NotesContainer = styled.ul`
   display: flex;
   gap: 20px;
+  overflow: hidden;
   @media (max-width: 768px) {
     gap: 0;
   }
