@@ -1,13 +1,60 @@
 {
-	"topics": [
-		{ "id": 1, "title": "책 모임", "body": "어쩌구저쩌구1", "tag": "독서" },
-		{
-			"id": 2,
-			"title": "클린 코딩",
-			"body": "이러쿵저러쿵2",
-			"tag": "클린코딩"
-		},
-		{ "id": 3, "title": "TDD 스터디", "body": "이러쿵저러쿵3", "tag": "독서" },
-		{ "id": 4, "title": "디자인", "body": "이러쿵저러쿵4", "tag": "디자인" }
-	]
+  "topics": [
+    {
+      "id": 1,
+      "title": "책 모임",
+      "body": "어쩌구저쩌구1",
+      "category": "독서",
+      "place": "online"
+    },
+    {
+      "id": 2,
+      "title": "클린 코딩",
+      "body": "이러쿵저러쿵2",
+      "category": "클린코딩",
+      "place": "online"
+    },
+    {
+      "id": 3,
+      "title": "TDD 스터디",
+      "body": "이러쿵저러쿵3",
+      "category": "독서",
+      "place": "offline"
+    },
+    {
+      "id": 4,
+      "title": "디자인",
+      "body": "aasadsaaa",
+      "category": "디자인",
+      "place": "online"
+    },
+    {
+      "id": 5,
+      "title": "Asdaa",
+      "body": "ㅁㅁㄴㅇㅁㄴㅇㅁㄴㅇ",
+      "category": "판타지",
+      "place": "all"
+    },
+    {
+      "id": 6,
+      "title": "불라불라",
+      "body": "adasdasdkmlkxmv",
+      "category": "무협",
+      "place": "offline"
+    },
+    {
+      "id": 7,
+      "title": "duddjfnmams",
+      "body": "이러쿵저러쿵4",
+      "category": "문학",
+      "place": "online"
+    },
+    {
+      "id": 8,
+      "title": "눈물을 마시는 새",
+      "body": "령령령",
+      "category": "판타지",
+      "place": "online"
+    }
+  ]
 }
