@@ -13,6 +13,7 @@ export interface IProps {
     body: string;
     category: string;
     place: string;
+    image: string;
   }[];
 }
 
@@ -28,7 +29,10 @@ const SearchHeader = () => {
   const debouncedValue = useDebounce<string>(inputWord);
 
   const searchByKeyword = (list: IProps["topics"], keyword: string) => {
-    return list.filter((meeting) => meeting.title.includes(keyword));
+    return list.filter(
+      (meeting) =>
+        meeting.title.includes(keyword) || meeting.body.includes(keyword)
+    );
   };
 
   const searchByCategory = (
@@ -58,7 +62,7 @@ const SearchHeader = () => {
   }, [debouncedValue, category, place]);
 
   return (
-    <>
+    <S.Main>
       <S.Search>
         <S.Form>
           <S.SearchIconBox>
@@ -74,7 +78,7 @@ const SearchHeader = () => {
       </S.Search>
       <Categories handleCategory={setCategory} handlePlace={setPlace} />
       <Meetings data={meetings} />
-    </>
+    </S.Main>
   );
 };
 

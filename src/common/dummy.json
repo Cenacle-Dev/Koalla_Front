@@ -2,59 +2,67 @@
   "topics": [
     {
       "id": 1,
-      "title": "책 모임",
-      "body": "어쩌구저쩌구1",
-      "category": "독서",
-      "place": "online"
+      "title": "독서 모임",
+      "body": "책 읽는 습관을 들이는 곳.",
+      "category": "자유주제",
+      "place": "online",
+      "image": "https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80"
     },
     {
       "id": 2,
       "title": "클린 코딩",
-      "body": "이러쿵저러쿵2",
-      "category": "클린코딩",
-      "place": "online"
+      "body": "코드 리뷰와 토론으로 좋은 코드 지향하기",
+      "category": "커리어",
+      "place": "online",
+      "image": "https://images.unsplash.com/photo-1564865878688-9a244444042a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
     },
     {
       "id": 3,
       "title": "TDD 스터디",
-      "body": "이러쿵저러쿵3",
-      "category": "독서",
-      "place": "offline"
+      "body": "요즘 핫하다는 TDD 같이 하실래요?",
+      "category": "커리어",
+      "place": "offline",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
     },
     {
       "id": 4,
-      "title": "디자인",
-      "body": "aasadsaaa",
-      "category": "디자인",
-      "place": "online"
+      "title": "작법 연구실",
+      "body": "좋은 글쓰기를 연습합니다.",
+      "category": "문학",
+      "place": "online",
+      "image": "https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80"
     },
     {
       "id": 5,
-      "title": "Asdaa",
-      "body": "ㅁㅁㄴㅇㅁㄴㅇㅁㄴㅇ",
-      "category": "판타지",
-      "place": "all"
+      "title": "저잣거리",
+      "body": "비타민 같은 토론을 나눕니다.",
+      "category": "사회",
+      "place": "all",
+      "image": "https://images.unsplash.com/photo-1530811761207-8d9d22f0a141?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
     },
     {
       "id": 6,
-      "title": "불라불라",
-      "body": "adasdasdkmlkxmv",
-      "category": "무협",
-      "place": "offline"
+      "title": "홈 파머스",
+      "body": "같이 집에서 농작해봐요.",
+      "category": "자유주제",
+      "place": "online",
+      "image": "https://images.unsplash.com/photo-1654578513266-728fbe673710?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
     },
     {
       "id": 7,
-      "title": "duddjfnmams",
-      "body": "이러쿵저러쿵4",
-      "category": "문학",
-      "place": "online"
+      "title": "커피 스터디",
+      "body": "커피를 배우고, 맛봅니다.",
+      "category": "자유주제",
+      "place": "online",
+      "image": "https://images.unsplash.com/photo-1606791405792-1004f1718d0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
     },
     {
       "id": 8,
-      "title": "눈물을 마시는 새",
-      "body": "령령령",
-      "category": "판타지",
-      "place": "online"
+      "title": "디자인 창고",
+      "body": "디자인 패턴 스터디를 합니다.",
+      "category": "커리어",
+      "place": "online",
+      "image": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
     }
   ]
 }

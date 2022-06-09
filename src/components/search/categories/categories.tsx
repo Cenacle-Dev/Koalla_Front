@@ -10,17 +10,7 @@ interface Props {
 
 const Categories = ({ handleCategory, handlePlace }: Props) => {
   const searchOption = {
-    카테고리: [
-      "교양",
-      "컴퓨터",
-      "프로그래밍",
-      "순수 문학",
-      "과학",
-      "비문학",
-      "SF",
-      "판타지",
-      "무협",
-    ],
+    카테고리: ["사회", "문학", "커리어", "자유주제"],
     장소: ["온라인", "오프라인"],
   };
 
